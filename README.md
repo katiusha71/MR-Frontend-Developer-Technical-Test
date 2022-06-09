@@ -1,5 +1,5 @@
 # MR-Frontend-Developer-Technical-Test
-Ive been asked to create a simple product details section for a clothing site with cart functionality to store a customer’s product selections. The clothing site will comprise a client-side app in Javascript, HTML, CSS.
+I've been asked to create a simple product details section for a clothing site with cart functionality to store a customer’s product selections. The clothing site will comprise a client-side app in Javascript, HTML, CSS.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
