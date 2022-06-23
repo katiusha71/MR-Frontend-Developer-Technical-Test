@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 // Components
 import Item from './Item/Item';
@@ -29,8 +29,9 @@ export type CartItemType = {
 
 const getProducts = async (): Promise<CartItemType[]> =>
     //await (await fetch('https://fakestoreapi.com/products')).json();
-   // await (await fetch('https://drive.google.com/file/d/0B8KYnbdnrRGXSXVoMzdqRWhCTXc/view?resourcekey=0-isJkYanmVCSmONHLETXDwg')).json();
-    await (await fetch('http://localhost:3001/ProductData.json')).json();
+    //await (await fetch('http://localhost:3000/ProductData.json')).json();
+    [await (await fetch('https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product')).json()];
+    
 
 const App = () => {
     const [sizeChoosen, setsizeChoosen] = useState(false);
@@ -41,6 +42,15 @@ const App = () => {
         getProducts
     );
 
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem('cartItems') || '[]') as CartItemType[]
+        setCartItems(saved)
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems))
+    }, [cartItems])
+    
     console.log(data);
     const getTotalItems = (items: CartItemType[]) =>
         items.reduce((ack: number, item) => ack + item.amount, 0);
